@@ -1,4 +1,4 @@
-package ExerciseTwo;
+package Append;
 
 public class Main {
 

@@ -1,4 +1,4 @@
-package ExerciseThree;
+package RemoveLast;
 
 public class Main {
 

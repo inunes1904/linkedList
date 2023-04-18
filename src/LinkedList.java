@@ -35,7 +35,6 @@ public class LinkedList {
     }
   }
 
-
   public Node removeLast(){
     if (length == 0) return null;
     Node startNode = head;
