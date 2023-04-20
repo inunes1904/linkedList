@@ -1,4 +1,4 @@
-package Remove;
+package Reverse;
 
 public class LinkedList {
 
@@ -140,32 +140,36 @@ public class LinkedList {
     return true;
   }
 
-  // WRITE REMOVE METHOD HERE //
-  public Node remove(int index){
-    if (index<0 || index > length-1 || length == 0) return null;
-    Node removeNode = null;
-    Node tmpNode = head;
-
+  public Node remove(int index) {
+    if (index < 0 || index >= length) return null;
     if (index == 0) return removeFirst();
+    if (index == length - 1) return removeLast();
 
-    else if(index == length-1) return removeLast();
+    Node prev = get(index - 1);
+    Node temp = prev.next;
 
-    else {
-      for (int i = 0; i < length; i++) {
-        Node prevNode = get(i - 1);
-        if (i == index) {
-            prevNode.next = tmpNode.next;
-            removeNode = tmpNode;
-            removeNode.next = null;
-            length--;
-            return removeNode;
-        }
-        tmpNode = tmpNode.next;
-      }
-    }
-
-    return removeNode;
+    prev.next = temp.next;
+    temp.next = null;
+    length--;
+    return temp;
   }
 
+  // WRITE REVERSE METHOD HERE //
+public void reverse() {
+
+  Node tmp = head;
+  head = tail;
+  tail = tmp;
+  Node after = tmp.next;
+  Node before = null;
+
+  for (int i = 0; i < length; i++) {
+    after = tmp.next;
+    tmp.next = before;
+    before = tmp;
+    tmp = after;
+  }
+
+}
 }
 
