@@ -1,4 +1,4 @@
-package _DoubleLinkedList.append;
+package _DoubleLinkedList.remove;
 
 public class DoublyLinkedList {
 
@@ -51,22 +51,37 @@ public class DoublyLinkedList {
     System.out.println("Length: " + length);
   }
 
-  // WRITE APPEND METHOD HERE //
-  public void append(int value){
-
+  public void append (int value) {
     Node newNode = new Node(value);
-
-    if (length > 0 ){
-      Node tmp = tail;
-      tail.next = newNode;
-      tail = newNode;
-      newNode.prev = tmp;
-    } else{
-      tail = newNode;
+    if(length == 0) {
       head = newNode;
+      tail = newNode;
+    } else {
+      tail.next = newNode;
+      newNode.prev = tail;
+      tail = newNode;
     }
     length++;
   }
+
+  // WRITE REMOVELAST METHOD HERE //
+public Node removeLast(){
+
+    if (length <= 0) return null;
+    Node tmp = null;
+    if (length == 1){
+      tmp = head;
+      head = null;
+      tail = null;
+    }else{
+      tmp = tail;
+      tail = tail.prev;
+      tail.next = null;
+      tmp.prev = null;
+    }
+    length--;
+    return tmp;
+}
 
 }
 

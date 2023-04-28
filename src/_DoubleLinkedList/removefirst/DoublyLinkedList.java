@@ -1,4 +1,4 @@
-package _DoubleLinkedList.append;
+package _DoubleLinkedList.removefirst;
 
 public class DoublyLinkedList {
 
@@ -51,22 +51,62 @@ public class DoublyLinkedList {
     System.out.println("Length: " + length);
   }
 
-  // WRITE APPEND METHOD HERE //
-  public void append(int value){
-
+  public void append (int value) {
     Node newNode = new Node(value);
-
-    if (length > 0 ){
-      Node tmp = tail;
+    if(length == 0) {
+      head = newNode;
+      tail = newNode;
+    } else {
       tail.next = newNode;
+      newNode.prev = tail;
       tail = newNode;
-      newNode.prev = tmp;
-    } else{
+    }
+    length++;
+  }
+
+  public Node removeLast() {
+    if(length == 0) return null;
+    Node temp = tail;
+    if (length == 1) {
+      head = null;
+      tail = null;
+    } else {
+      tail = tail.prev;
+      tail.next = null;
+      temp.prev = null;
+    }
+    length--;
+    return temp;
+  }
+
+  public void prepend(int value) {
+    Node newNode = new Node(value);
+    if(length == 0) {
+      head = newNode;
       tail = newNode;
+    } else {
+      newNode.next = head;
+      head.prev = newNode;
       head = newNode;
     }
     length++;
   }
+
+  // WRITE REMOVEFIRST METHOD HERE //
+public Node removeFirst(){
+    if(length<=0) return null;
+    Node tmp = head;
+    if (length == 1){
+      head = null;
+      tail = null;
+    } else if (length > 1) {
+      head = tmp.next;
+      head.prev = null;
+      tmp.next = null;
+    }
+    length--;
+    return tmp;
+}
 
 }
 
